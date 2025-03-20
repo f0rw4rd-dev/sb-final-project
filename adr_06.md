@@ -3,12 +3,12 @@
 1. Контекст:
    * При распределенной (микросервисной) архитектуре важно иметь централизованный сбор логов, метрик и трассировок.
 2. Решение:
-   * Использовать стек Prometheus + Grafana для метрик, Elasticsearch или Loki для логов. Внедрить Jaeger/Zipkin для трассировок.
+   * Использовать стек Prometheus + Grafana для метрик, Elasticsearch для логов. Внедрить Jaeger для трассировок.
 3. Статус:
    * Принято.
 4. Обоснование:
    * Prometheus/Grafana - стандарт для мониторинга Kubernetes-кластеров, легко интегрируется.
-   * ELK / Loki обеспечивает гибкий поиск по логам. Jaeger - инструмент для распределенной трассировки.
+   * ELK обеспечивает гибкий поиск по логам. Jaeger - инструмент для распределенной трассировки.
 5. Последствия:
    * Дополнительные ресурсы для инфраструктуры (серверы/контейнеры для Prometheus, Elasticsearch).
    * Необходима настройка алертинга и регулярный аудит метрик, чтобы вовремя реагировать на инциденты.
@@ -32,6 +32,7 @@
     4. [Выделение БД для аналитики](https://github.com/f0rw4rd-dev/sb-final-project/blob/main/adr_04.md)
     5. [Аутентификация и авторизация (OAuth2 / OpenID Connect)](https://github.com/f0rw4rd-dev/sb-final-project/blob/main/adr_05.md)
     6. [Наблюдаемость (Observability)](https://github.com/f0rw4rd-dev/sb-final-project/blob/main/adr_06.md)
+    7. [Использование Kafka в качестве основного брокера сообщений](https://github.com/f0rw4rd-dev/sb-final-project/blob/main/adr_07.md)
 12. [Описание сценариев использования приложения](https://github.com/f0rw4rd-dev/sb-final-project/blob/main/use_cases.md)
 13. [Базовая архитектура](https://github.com/f0rw4rd-dev/sb-final-project/blob/main/basic_architecture.md)
 14. [Основные представления](https://github.com/f0rw4rd-dev/sb-final-project/blob/main/views.md)

@@ -26,9 +26,9 @@
      * БД пользователей и групп: пользователи, группы, посты в лентах, комментарии.
 2. Кластер аналитических БД.
    * БД аналитики: агрегированные и исторические данные, применяемые для отчетов, статистики, а также для обучения ML-моделей.
-3. Message Broker (Kafka).
+3. Брокер сообщений (Kafka).
    * Асинхронные события (новая тренировка, новый пост, достижения пользователя), которые обрабатываются подписчиками.
-4. Object Storage (S3).
+4. Объектное хранилище (S3).
    * Хранение файлов и медиа (фото профиля, изображения, видео и т. п.).
    * Сервисы могут загружать/читать файлы.
 
@@ -49,15 +49,18 @@
    * Каждый сервис развертывается как Deployment (с набором pod'ов), управляемый Kubernetes.
    * Service Mesh развернут поверх кластера, обеспечивая политику сетевых взаимодействий.
    * API Gateway (BFF) как отдельный Deployment, имеющий публичный IP/Ingress для доступа пользователей.
-2. DBs, Message Brokers, S3.
+2. БД, Брокеры сообщений, Объектные хранилища.
    * "Кластер операционных БД" и "Кластер аналитических БД" могут быть:
      * Managed solutions (например, AWS RDS/Aurora, Google Cloud SQL, Azure Database).
      * Самостоятельно развернутые базы (PostgreSQL) в Kubernetes или VMs (по необходимости).
    * Kafka (Message Broker) развернут в кластере или как Managed Service (Confluent Cloud, AWS MSK и т. п.).
    * S3 (Object Storage) берется как Managed Service в AWS, GCP, Azure, либо MinIO в Kubernetes.
-3. Clients и IDP.
+3. Клиентские приложения и IDP.
    * Мобильное приложение и веб-сайт взаимодействуют через HTTPS, используя DNS-имя API Gateway.
    * Для аутентификации переадресуют пользователя на Identity Provider (внешний Auth-сервер).
+4. Мониторинг.
+   * Хранение логов в Elasticsearch.
+   * Prometheus фокусируется на сборе данных для метрик, Grafana используется для их визуализации. 
 
 ## Безопасность
 1. Аутентификация и Авторизация.
@@ -97,6 +100,7 @@
     4. [Выделение БД для аналитики](https://github.com/f0rw4rd-dev/sb-final-project/blob/main/adr_04.md)
     5. [Аутентификация и авторизация (OAuth2 / OpenID Connect)](https://github.com/f0rw4rd-dev/sb-final-project/blob/main/adr_05.md)
     6. [Наблюдаемость (Observability)](https://github.com/f0rw4rd-dev/sb-final-project/blob/main/adr_06.md)
+    7. [Использование Kafka в качестве основного брокера сообщений](https://github.com/f0rw4rd-dev/sb-final-project/blob/main/adr_07.md)
 12. [Описание сценариев использования приложения](https://github.com/f0rw4rd-dev/sb-final-project/blob/main/use_cases.md)
 13. [Базовая архитектура](https://github.com/f0rw4rd-dev/sb-final-project/blob/main/basic_architecture.md)
 14. [Основные представления](https://github.com/f0rw4rd-dev/sb-final-project/blob/main/views.md)
